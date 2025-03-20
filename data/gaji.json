@@ -1,0 +1,22 @@
+{
+    "gaji": [
+        {
+            "id": "SAL001",
+            "karyawan_id": "EMP001",
+            "gaji_pokok": 5000000,
+            "tunjangan": {
+                "transport": 500000,
+                "makan": 400000,
+                "kesehatan": 300000
+            },
+            "potongan": {
+                "bpjs": 100000,
+                "pph21": 150000
+            },
+            "total": 5950000,
+            "bulan": "2024-01",
+            "status": "dibayar",
+            "tanggal_bayar": "2024-01-25"
+        }
+    ]
+}
