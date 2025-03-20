@@ -1,0 +1,15 @@
+{
+    "karyawan": [
+        {
+            "id": "EMP001",
+            "nama": "John Doe",
+            "jabatan": "Staff IT",
+            "departemen": "IT",
+            "tanggal_masuk": "2023-01-01",
+            "status": "aktif",
+            "alamat": "Jl. Contoh No. 123",
+            "telepon": "081234567890",
+            "email": "john.doe@example.com"
+        }
+    ]
+}
