@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cita Cerdas HR System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-xl font-bold">Cita Cerdas HR</h1>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="ml-3 relative">
+                        <div class="flex items-center space-x-4">
+                            <span id="adminName" class="text-gray-700"></span>
+                            <button id="logoutBtn" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Welcome Section -->
+        <div class="px-4 py-6 sm:px-0">
+            <h2 class="text-2xl font-semibold text-gray-800">Welcome to Admin Dashboard</h2>
+            <p class="mt-2 text-gray-600">Manage your HR system from here</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Total Employees -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-users text-blue-500 text-3xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Total Employees
+                                </dt>
+                                <dd class="text-3xl font-semibold text-gray-900">
+                                    0
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Applications -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-file-alt text-green-500 text-3xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Pending Applications
+                                </dt>
+                                <dd class="text-3xl font-semibold text-gray-900">
+                                    0
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Tasks -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-tasks text-purple-500 text-3xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">
+                                    Active Tasks
+                                </dt>
+                                <dd class="text-3xl font-semibold text-gray-900">
+                                    0
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="mt-8">
+            <h3 class="text-lg font-medium text-gray-900">Quick Actions</h3>
+            <div class="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <button class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                    <i class="fas fa-user-plus text-blue-500 text-2xl"></i>
+                    <h4 class="mt-4 text-lg font-medium text-gray-900">Add Employee</h4>
+                    <p class="mt-1 text-sm text-gray-500">Register new employees in the system</p>
+                </button>
+
+                <button class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                    <i class="fas fa-clipboard-list text-green-500 text-2xl"></i>
+                    <h4 class="mt-4 text-lg font-medium text-gray-900">Review Applications</h4>
+                    <p class="mt-1 text-sm text-gray-500">Check pending job applications</p>
+                </button>
+
+                <button class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                    <i class="fas fa-chart-bar text-purple-500 text-2xl"></i>
+                    <h4 class="mt-4 text-lg font-medium text-gray-900">View Reports</h4>
+                    <p class="mt-1 text-sm text-gray-500">Access HR analytics and reports</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (!token || !user || user.role !== 'admin') {
+            window.location.href = '/';
+        }
+
+        // Display admin name
+        document.getElementById('adminName').textContent = user.name;
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>
